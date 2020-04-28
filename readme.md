@@ -1,3 +1,6 @@
+ ### Kurulum
+ ```go get github.com/bdemirpolat/vatansmsgo```
+ 
  ### Toplu SMS
   ##### Her numaraya farklı mesajlar göndermek için;
   ``` 
