@@ -4,12 +4,12 @@ import (
 	"encoding/xml"
 	"errors"
 	"fmt"
+	"github.com/bdemirpolat/vatansmsgo/gosoap"
 	"io/ioutil"
 	"net/http"
 	"strconv"
 	"strings"
 	"time"
-	"github.com/bdemirpolat/vatansmsgo/gosoap"
 )
 
 func (data OneToN) Send1N() (SendResult, error) {
@@ -20,8 +20,8 @@ func (data OneToN) Send1N() (SendResult, error) {
 		panic(err.Error())
 	}
 	bodyBytes, err := ioutil.ReadAll(req.Body)
-	response, _ := SmsResponse(string(bodyBytes))
-	return response, nil
+	response, err := SmsResponse(string(bodyBytes))
+	return response, err
 
 }
 
@@ -32,8 +32,8 @@ func (data NToN) SendNN() (SendResult, error) {
 		panic(err.Error())
 	}
 	bodyBytes, err := ioutil.ReadAll(req.Body)
-	response, _ := SmsResponse(string(bodyBytes))
-	return response, nil
+	response, err := SmsResponse(string(bodyBytes))
+	return response, err
 }
 
 func SmsResponse(response string) (SendResult, error) {
@@ -56,7 +56,7 @@ func SmsResponse(response string) (SendResult, error) {
 		return SendResult{
 			Status:      false,
 			Description: parse[1],
-		}, nil
+		}, errors.New(parse[1])
 	}
 }
 
