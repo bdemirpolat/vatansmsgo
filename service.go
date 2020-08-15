@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
-	"vatansmsgo/gosoap"
+	"github.com/bdemirpolat/vatansmsgo/gosoap"
 )
 
 func (data OneToN) Send1N() (SendResult, error) {
